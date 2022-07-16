@@ -30,10 +30,6 @@ jobs:
         with:
           generator: typescript-axios
           openapi-file: test.yml
-      - name: Do something with the client
-        run: |
-          cd typescript-angular-client
-          cat model/models.ts
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
