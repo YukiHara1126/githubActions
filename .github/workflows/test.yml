@@ -29,6 +29,7 @@ jobs:
         uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
           generator: typescript-angular
+          openapi-file: test.yml
       - name: Do something with the client
         run: |
           cd typescript-angular-client
