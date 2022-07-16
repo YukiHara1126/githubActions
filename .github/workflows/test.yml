@@ -38,7 +38,7 @@ jobs:
         with:
           title: "APIコードのdd更新 by ${{ github.event.client_payload.user }}"
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.event.client_payload.branch }}
+          branch: "feature/test"
           base: ${{ github.event.client_payload.base }}
           commit-message: "update submodule and generated code"
           body: |
