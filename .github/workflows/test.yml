@@ -33,3 +33,13 @@ jobs:
         run: |
           cd typescript-angular-client
           cat model/models.ts
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          title: "APIコードの更新 by ${{ github.event.client_payload.user }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.event.client_payload.branch }}
+          base: ${{ github.event.client_payload.base }}
+          commit-message: "update submodule and generated code"
+          body: |
+            ${{ github.event.client_payload.url }}
