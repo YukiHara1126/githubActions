@@ -28,7 +28,7 @@ jobs:
       - name: Generate Client Library w/ the OpenAPITools Generator
         uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
-          generator: typescript-axios
+          generator: typescript-nestjs
           openapi-file: test.yml
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
