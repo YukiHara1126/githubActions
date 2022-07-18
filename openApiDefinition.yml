@@ -131,12 +131,15 @@ paths:
       responses:
         "201":
           description: ""
+      tags:
+        - ec
     get:
       operationId: EcCompaniesController_findAll
       parameters: []
       responses:
         "200":
           description: ""
+      description: ""
   /coupons:
     post:
       operationId: CouponsController_create
@@ -150,6 +153,8 @@ paths:
       responses:
         "201":
           description: ""
+      tags:
+        - coupons
   "/coupons/{consumerId}/{couponCode}":
     get:
       operationId: CouponsController_findOne
