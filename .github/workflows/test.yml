@@ -33,7 +33,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
-          title: "APIコードのdd更新 by ${{ github.event.client_payload.user }}"
+          title: "APIコードの更新"
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: "feature/test"
           base: ${{ github.event.client_payload.base }}
