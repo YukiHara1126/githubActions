@@ -1,0 +1,242 @@
+openapi: 3.0.0
+paths:
+  /auth/login:
+    post:
+      operationId: AppController_login
+      parameters: []
+      responses:
+        "201":
+          description: login
+      tags:
+        - login
+  /profile:
+    get:
+      operationId: AppController_getProfile
+      parameters: []
+      responses:
+        "200":
+          description: profile
+      security:
+        - bearer: []
+      tags:
+        - profile
+  /register:
+    post:
+      operationId: AppController_register
+      parameters: []
+      responses:
+        "201":
+          description: ""
+      tags:
+        - register
+  /users:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createUserDTO"
+      responses:
+        "201":
+          description: ""
+      tags:
+        - users
+  /bags:
+    get:
+      operationId: BagsController_findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+    post:
+      operationId: BagsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateBagDto"
+      responses:
+        "201":
+          description: ""
+      tags:
+        - bags
+  "/bags/{id}/in-comvey":
+    patch:
+      operationId: BagsController_updateToInComvey
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+  "/bags/{id}/in-ec":
+    patch:
+      operationId: BagsController_updateToInEC
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBagDto"
+      responses:
+        "200":
+          description: ""
+  "/bags/{id}/{consumerId}/in-consumer":
+    patch:
+      operationId: BagsController_updateToInConsumer
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateBagDto"
+      responses:
+        "200":
+          description: ""
+  /ec-companies:
+    post:
+      operationId: EcCompaniesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEcCompanyDto"
+      responses:
+        "201":
+          description: ""
+    get:
+      operationId: EcCompaniesController_findAll
+      parameters: []
+      responses:
+        "200":
+          description: ""
+  /coupons:
+    post:
+      operationId: CouponsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCouponDto"
+      responses:
+        "201":
+          description: ""
+  "/coupons/{consumerId}/{couponCode}":
+    get:
+      operationId: CouponsController_findOne
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: couponCode
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+    post:
+      operationId: CouponsController_use
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: couponCode
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "201":
+          description: ""
+  "/coupons/{consumerId}":
+    get:
+      operationId: CouponsController_findAll
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+info:
+  title: Cats example
+  description: The cats API description
+  version: "1.0"
+  contact: {}
+tags:
+  - name: cats
+    description: ""
+servers: []
+components:
+  schemas:
+    createUserDTO:
+      type: object
+      properties:
+        email:
+          type: string
+          default: wbIGV9k9n2@gmail.com
+        password:
+          type: string
+          default: wefoenv406879fk0
+      required:
+        - email
+        - password
+    CreateBagDto:
+      type: object
+      properties:
+        companyId:
+          type: number
+          default: 1
+      required:
+        - companyId
+    UpdateBagDto:
+      type: object
+      properties: {}
+    CreateEcCompanyDto:
+      type: object
+      properties: {}
+    CreateCouponDto:
+      type: object
+      properties:
+        discountRate:
+          type: number
+          default: 10
+      required:
+        - discountRate
