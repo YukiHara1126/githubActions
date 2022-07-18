@@ -7,6 +7,8 @@ paths:
       responses:
         "201":
           description: login
+      tags:
+        - login
   /profile:
     get:
       operationId: AppController_getProfile
@@ -16,6 +18,8 @@ paths:
           description: profile
       security:
         - bearer: []
+      tags:
+        - profile
   /register:
     post:
       operationId: AppController_register
@@ -36,6 +40,8 @@ paths:
       responses:
         "201":
           description: ""
+      tags:
+        - users
   /bags:
     get:
       operationId: BagsController_findAll
@@ -55,6 +61,8 @@ paths:
       responses:
         "201":
           description: ""
+      tags:
+        - bags
   "/bags/{id}/in-comvey":
     patch:
       operationId: BagsController_updateToInComvey
