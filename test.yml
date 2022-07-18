@@ -5,14 +5,14 @@ paths:
       operationId: AppController_login
       parameters: []
       responses:
-        '201':
+        "201":
           description: login
   /profile:
     get:
       operationId: AppController_getProfile
       parameters: []
       responses:
-        '200':
+        "200":
           description: profile
       security:
         - bearer: []
@@ -21,8 +21,8 @@ paths:
       operationId: AppController_register
       parameters: []
       responses:
-        '201':
-          description: ''
+        "201":
+          description: ""
   /users:
     post:
       operationId: UsersController_create
@@ -32,17 +32,17 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/createUserDTO'
+              $ref: "#/components/schemas/createUserDTO"
       responses:
-        '201':
-          description: ''
+        "201":
+          description: ""
   /bags:
     get:
       operationId: BagsController_findAll
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
     post:
       operationId: BagsController_create
       parameters: []
@@ -51,11 +51,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateBagDto'
+              $ref: "#/components/schemas/CreateBagDto"
       responses:
-        '201':
-          description: ''
-  '/bags/{id}/in-comvey':
+        "201":
+          description: ""
+  "/bags/{id}/in-comvey":
     patch:
       operationId: BagsController_updateToInComvey
       parameters:
@@ -65,9 +65,9 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: ''
-  '/bags/{id}/in-ec':
+        "200":
+          description: ""
+  "/bags/{id}/in-ec":
     patch:
       operationId: BagsController_updateToInEC
       parameters:
@@ -81,11 +81,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateBagDto'
+              $ref: "#/components/schemas/UpdateBagDto"
       responses:
-        '200':
-          description: ''
-  '/bags/{id}/{consumerId}/in-consumer':
+        "200":
+          description: ""
+  "/bags/{id}/{consumerId}/in-consumer":
     patch:
       operationId: BagsController_updateToInConsumer
       parameters:
@@ -104,10 +104,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateBagDto'
+              $ref: "#/components/schemas/UpdateBagDto"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
   /ec-companies:
     post:
       operationId: EcCompaniesController_create
@@ -117,16 +117,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateEcCompanyDto'
+              $ref: "#/components/schemas/CreateEcCompanyDto"
       responses:
-        '201':
-          description: ''
+        "201":
+          description: ""
     get:
       operationId: EcCompaniesController_findAll
       parameters: []
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
   /coupons:
     post:
       operationId: CouponsController_create
@@ -136,11 +136,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCouponDto'
+              $ref: "#/components/schemas/CreateCouponDto"
       responses:
-        '201':
-          description: ''
-  '/coupons/{consumerId}/{couponCode}':
+        "201":
+          description: ""
+  "/coupons/{consumerId}/{couponCode}":
     get:
       operationId: CouponsController_findOne
       parameters:
@@ -155,8 +155,8 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
     post:
       operationId: CouponsController_use
       parameters:
@@ -171,9 +171,9 @@ paths:
           schema:
             type: string
       responses:
-        '201':
-          description: ''
-  '/coupons/{consumerId}':
+        "201":
+          description: ""
+  "/coupons/{consumerId}":
     get:
       operationId: CouponsController_findAll
       parameters:
@@ -183,16 +183,16 @@ paths:
           schema:
             type: string
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
 info:
   title: Cats example
   description: The cats API description
-  version: '1.0'
+  version: "1.0"
   contact: {}
 tags:
   - name: cats
-    description: ''
+    description: ""
 servers: []
 components:
   schemas:
@@ -230,3 +230,20 @@ components:
           default: 10
       required:
         - discountRate
+    code:
+      type: integer
+      format: int32
+    message:
+      type: string
+    LoginRequest:
+      title: LoginRequest
+      type: object
+      description: 認証情報
+      required: [loginId, password]
+      properties:
+        loginId:
+          type: string
+          description: ログインID
+        password:
+          type: string
+          description: パスワード
