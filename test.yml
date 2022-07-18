@@ -1,111 +1,232 @@
-openapi: "3.0.0"
-info:
-  version: 1.0.0
-  title: Swagger Petstore
-  license:
-    name: MIT
-servers:
-  - url: http://petstore.swagger.io/v1
+openapi: 3.0.0
 paths:
-  /pets:
-    get:
-      summary: List all pets
-      operationId: listPets
-      tags:
-        - pets
-      parameters:
-        - name: limit
-          in: query
-          description: How many items to return at one time (max 100)
-          required: false
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: A paged array of pets
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pets"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+  /auth/login:
     post:
-      summary: Create a pet
-      operationId: createPets
-      tags:
-        - pets
+      operationId: AppController_login
+      parameters: []
       responses:
-        "201":
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /pets/{petId}:
+        '201':
+          description: login
+  /profile:
     get:
-      summary: Info for a specific pet
-      operationId: showPetById
-      tags:
-        - pets
+      operationId: AppController_getProfile
+      parameters: []
+      responses:
+        '200':
+          description: profile
+      security:
+        - bearer: []
+  /register:
+    post:
+      operationId: AppController_register
+      parameters: []
+      responses:
+        '201':
+          description: ''
+  /users:
+    post:
+      operationId: UsersController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUserDTO'
+      responses:
+        '201':
+          description: ''
+  /bags:
+    get:
+      operationId: BagsController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+    post:
+      operationId: BagsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBagDto'
+      responses:
+        '201':
+          description: ''
+  '/bags/{id}/in-comvey':
+    patch:
+      operationId: BagsController_updateToInComvey
       parameters:
-        - name: petId
-          in: path
+        - name: id
           required: true
-          description: The id of the pet to retrieve
+          in: path
           schema:
             type: string
       responses:
-        "200":
-          description: Expected response to a valid request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Pet"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
+        '200':
+          description: ''
+  '/bags/{id}/in-ec':
+    patch:
+      operationId: BagsController_updateToInEC
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBagDto'
+      responses:
+        '200':
+          description: ''
+  '/bags/{id}/{consumerId}/in-consumer':
+    patch:
+      operationId: BagsController_updateToInConsumer
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBagDto'
+      responses:
+        '200':
+          description: ''
+  /ec-companies:
+    post:
+      operationId: EcCompaniesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEcCompanyDto'
+      responses:
+        '201':
+          description: ''
+    get:
+      operationId: EcCompaniesController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /coupons:
+    post:
+      operationId: CouponsController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCouponDto'
+      responses:
+        '201':
+          description: ''
+  '/coupons/{consumerId}/{couponCode}':
+    get:
+      operationId: CouponsController_findOne
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: couponCode
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    post:
+      operationId: CouponsController_use
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: couponCode
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '201':
+          description: ''
+  '/coupons/{consumerId}':
+    get:
+      operationId: CouponsController_findAll
+      parameters:
+        - name: consumerId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+info:
+  title: Cats example
+  description: The cats API description
+  version: '1.0'
+  contact: {}
+tags:
+  - name: cats
+    description: ''
+servers: []
 components:
   schemas:
-    Pet:
+    createUserDTO:
       type: object
-      required:
-        - id
-        - name
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
+        email:
           type: string
-        tag:
+          default: wbIGV9k9n2@gmail.com
+        password:
           type: string
-    Pets:
-      type: array
-      items:
-        $ref: "#/components/schemas/Pet"
-    Error:
+          default: wefoenv406879fk0
+      required:
+        - email
+        - password
+    CreateBagDto:
       type: object
-      required:
-        - code
-        - message
       properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+        companyId:
+          type: number
+          default: 1
+      required:
+        - companyId
+    UpdateBagDto:
+      type: object
+      properties: {}
+    CreateEcCompanyDto:
+      type: object
+      properties: {}
+    CreateCouponDto:
+      type: object
+      properties:
+        discountRate:
+          type: number
+          default: 10
+      required:
+        - discountRate
