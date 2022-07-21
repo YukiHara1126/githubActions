@@ -45,6 +45,6 @@ jobs:
       - name: dispatch target-updated
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: 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
           repository: YukiHara1126/learn-githubflow
           event-type: target-updated
