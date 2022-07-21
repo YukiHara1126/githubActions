@@ -33,7 +33,7 @@ jobs:
       - name: test 
         run: ls
       - name: test 
-        run: echo ${{ secrets.GITHUB_TOKEN }} 
+        run: echo ${{ secrets }} 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
