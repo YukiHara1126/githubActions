@@ -34,19 +34,19 @@ jobs:
         run: ls
       - name: test 
         run: echo ${{ secrets }} 
-      # - name: Create Pull Request
-      #   uses: peter-evans/create-pull-request@v3.10.0
-      #   with:
-      #     title: "APIコードの更新"
-      #     token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: "feature/test"
-      #     base: ${{ github.event.client_payload.base }}
-      #     commit-message: "update submodule and generated code"
-      #     body: |
-      #       ${{ github.event.client_payload.url }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          title: "APIコードの更新"
+          token: ${{ github.token }}
+          branch: "feature/test"
+          base: ${{ github.event.client_payload.base }}
+          commit-message: "update submodule and generated code"
+          body: |
+            ${{ github.event.client_payload.url }}
       - name: dispatch target-updated
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: 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
+          token: ${{ github.token }}
           repository: YukiHara1126/learn-githubflow
           event-type: target-updated
