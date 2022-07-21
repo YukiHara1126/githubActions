@@ -32,6 +32,8 @@ jobs:
           openapi-file: openApiDefinition.yml
       - name: test 
         run: ls
+      - name: test 
+        run: echo ${{ secrets.GITHUB_TOKEN }} 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
