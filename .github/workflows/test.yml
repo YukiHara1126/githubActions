@@ -31,7 +31,7 @@ jobs:
           generator: typescript-fetch
           openapi-file: openApiDefinition.yml
       - name: test 
-        run ls
+        run: ls
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
