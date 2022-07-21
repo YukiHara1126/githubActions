@@ -42,4 +42,9 @@ jobs:
           commit-message: "update submodule and generated code"
           body: |
             ${{ github.event.client_payload.url }}
-      
+      - name: dispatch target-updated
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: YukiHara1126/learn-githubflow
+          event-type: target-updated
