@@ -23,13 +23,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # iOSコード生成
-      - name: checkout
-        uses: actions/checkout@v2
-      - name: Generate Client Library w/ the OpenAPITools Generator
-        uses: openapi-generators/openapitools-generator-action@v1.3.0
-        with:
-          generator: typescript-fetch
-          openapi-file: openApiDefinition.yml
+      # - name: checkout
+      #   uses: actions/checkout@v2
+      # - name: Generate Client Library w/ the OpenAPITools Generator
+      #   uses: openapi-generators/openapitools-generator-action@v1.3.0
+      #   with:
+      #     generator: typescript-fetch
+      #     openapi-file: openApiDefinition.yml
       - name: test 
         run: ls
       - name: test 
