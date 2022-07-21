@@ -35,17 +35,17 @@ jobs:
       - name: test 
         run: echo ${{ secrets }} 
       - name: test 
-              run: ls
-            - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v3.10.0
-              with:
-                title: "APIコードの更新"
-                token: ${{ secrets.GITHUB_TOKEN }}
-                branch: "feature/test"
-                base: ${{ github.event.client_payload.base }}
-                commit-message: "update submodule and generated code"
-                body: |
-                  ${{ github.event.client_payload.url }}
+        run: ls
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          title: "APIコードの更新"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: "feature/test"
+          base: ${{ github.event.client_payload.base }}
+          commit-message: "update submodule and generated code"
+          body: |
+            ${{ github.event.client_payload.url }}SS
       - name: dispatch target-updated
         uses: peter-evans/repository-dispatch@v1
         with:
