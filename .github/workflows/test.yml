@@ -31,8 +31,8 @@ jobs:
           openapi-file: openApiDefinition.yml
       - name: git setting
         run: |
-          git config --local user.email "yuki.hara1126@gmail.com"
-          git config --local user.name "yukihara1126"
+          git config --global user.email "yuki.hara1126@gmail.com"
+          git config --global user.name "yukihara1126"
       - name: Commit files
         run: |
           git add .
