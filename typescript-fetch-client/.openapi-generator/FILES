@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+apis/BagsApi.ts
+apis/CouponsApi.ts
+apis/DefaultApi.ts
+apis/EcApi.ts
+apis/LoginApi.ts
+apis/ProfileApi.ts
+apis/RegisterApi.ts
+apis/UsersApi.ts
+apis/index.ts
+index.ts
+models/CreateBagDto.ts
+models/CreateCouponDto.ts
+models/CreateUserDTO.ts
+models/index.ts
+runtime.ts
