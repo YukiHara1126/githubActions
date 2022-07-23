@@ -25,27 +25,27 @@ jobs:
       # iOSコード生成
       - name: checkout
         uses: actions/checkout@v2
-      # - name: Generate Client Library w/ the OpenAPITools Generator
-      #   uses: openapi-generators/openapitools-generator-action@v1.3.0
-      #   with:
-      #     generator: typescript-fetch
-      #     openapi-file: openApiDefinition.yml
-      - name: test 
-        run: ls
-      - name: test 
-        run: echo ${{ secrets }} 
-      - name: test 
-        run: ls
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.10.0
+      - name: Generate Client Library w/ the OpenAPITools Generator
+        uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
-          title: "APIコードの更新"
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: "feature/test"
-          base: ${{ github.event.client_payload.base }}
-          commit-message: "update submodule and generated code"
-          body: |
-            ${{ github.event.client_payload.url }}SS
+          generator: typescript-fetch
+          openapi-file: openApiDefinition.yml
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "Add csv" -a
+          git pull
+          git push origin master
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v3.10.0
+      #   with:
+      #     title: "APIコードの更新"
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: "feature/test"
+      #     base: ${{ github.event.client_payload.base }}
+      #     commit-message: "update submodule and generated code"
+      #     body: |
+      #       ${{ github.event.client_payload.url }}
       - name: dispatch target-updated
         uses: peter-evans/repository-dispatch@v1
         with:
