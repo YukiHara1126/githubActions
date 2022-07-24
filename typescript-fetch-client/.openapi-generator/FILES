@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/BagsApi.ts
 apis/CouponsApi.ts
 apis/DefaultApi.ts
