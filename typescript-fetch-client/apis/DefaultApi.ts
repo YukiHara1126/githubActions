@@ -34,6 +34,10 @@ export interface CouponsControllerFindAllRequest {
     consumerId: string;
 }
 
+export interface CouponsControllerFindAllTestRequest {
+    consumerId: string;
+}
+
 export interface CouponsControllerFindOneRequest {
     consumerId: string;
     couponCode: string;
@@ -196,6 +200,33 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async couponsControllerFindAll(requestParameters: CouponsControllerFindAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.couponsControllerFindAllRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     */
+    async couponsControllerFindAllTestRaw(requestParameters: CouponsControllerFindAllTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.consumerId === null || requestParameters.consumerId === undefined) {
+            throw new runtime.RequiredError('consumerId','Required parameter requestParameters.consumerId was null or undefined when calling couponsControllerFindAllTest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coupons/{consumerId}/test`.replace(`{${"consumerId"}}`, encodeURIComponent(String(requestParameters.consumerId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     */
+    async couponsControllerFindAllTest(requestParameters: CouponsControllerFindAllTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.couponsControllerFindAllTestRaw(requestParameters, initOverrides);
     }
 
     /**
