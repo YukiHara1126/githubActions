@@ -28,15 +28,21 @@ jobs:
         uses: JesseTG/rm@v1.0.2
         with:
           path: /typescript-fetch-client/
+      - name: git setting
+        run: |
+          git config --global user.email "yuki.hara1126@gmail.com"
+          git config --global user.name "yukihara1126"
+      - name: Commit files
+        run: |
+          git add .
+          git commit -m "Add csv" -a
+          git pull
+          git push origin master
       - name: Generate Client Library w/ the OpenAPITools Generator
         uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
           generator: typescript-fetch
           openapi-file: openApiDefinition.yml
-      - name: git setting
-        run: |
-          git config --global user.email "yuki.hara1126@gmail.com"
-          git config --global user.name "yukihara1126"
       - name: Commit files
         run: |
           git add .
