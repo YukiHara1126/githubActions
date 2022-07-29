@@ -257,3 +257,15 @@ components:
           default: 10
       required:
         - discountRate
+    createUserData:
+      type: object
+      properties:
+        email:
+          type: string
+          default: wbIGV9k9n2@gmail.com
+        password:
+          type: string
+          default: wefoenv406879fk0
+      required:
+        - email
+        - password
