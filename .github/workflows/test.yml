@@ -24,10 +24,10 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
-      # - name: Remove File
-      #   uses: JesseTG/rm@v1.0.2
-      #   with:
-      #     path: /typescript-fetch-client/
+      # OpenAPIClientの古い生成コードを削除
+      - name: Remove old generate files
+        run: |
+          rm -rf ./typescript-fetch-client/
       - name: Generate Client Library w/ the OpenAPITools Generator
         uses: openapi-generators/openapitools-generator-action@v1.3.0
         with:
