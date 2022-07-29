@@ -12,5 +12,6 @@ index.ts
 models/CreateBagDto.ts
 models/CreateCouponDto.ts
 models/CreateUserDTO.ts
+models/CreateUserData.ts
 models/index.ts
 runtime.ts
