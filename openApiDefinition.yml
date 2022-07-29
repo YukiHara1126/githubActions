@@ -200,9 +200,9 @@ paths:
       responses:
         "200":
           description: ""
-  "/coupons/{consumerId}":
+  "/coupons/{consumerId}/test":
     get:
-      operationId: CouponsController_findAll
+      operationId: CouponsController_findAll_test
       parameters:
         - name: consumerId
           required: true
